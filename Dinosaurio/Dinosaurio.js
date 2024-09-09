@@ -1,6 +1,6 @@
 
-var time = new Date();
-var deltaTime = 0;
+let time = new Date();
+let deltaTime = 0;
 
 if(document.readyState === "complete" || document.readyState === "interactive"){
     setTimeout(Init, 1);
@@ -18,41 +18,41 @@ function Loop() {
     Update();
     requestAnimationFrame(Loop);
 }
-var floorDinoY = 22;
-var velY = 0;
-var impulso = 900;
-var gravedad = 2500;
+let floorDinoY = 22;
+let velY = 0;
+let impulso = 900;
+let gravedad = 2500;
 
-var dinoPosX = 42;
-var dinoPosY = floorDinoY; 
+let dinoPosX = 42;
+let dinoPosY = floorDinoY; 
 
-var floorDinoX = 0;
-var velEscenario = 1280/3;
-var gameVel = 1;
-var score = 0;
+let floorDinoX = 0;
+let velEscenario = 1280/3;
+let gameVel = 1;
+let score = 0;
 
-var parado = false;
-var saltando = false;
+let parado = false;
+let saltando = false;
 
-var tiempoHastaObstaculo = 2;
-var tiempoObstaculoMin = 0.7;
-var tiempoObstaculoMax = 1.8;
-var obstaculoPosY = 16;
-var obstaculos = [];
+let tiempoHastaObstaculo = 2;
+let tiempoObstaculoMin = 0.7;
+let tiempoObstaculoMax = 1.8;
+let obstaculoPosY = 16;
+let obstaculos = [];
 
-var tiempoHastaNube = 0.5;
-var tiempoNubeMin = 0.7;
-var tiempoNubeMax = 2.7;
-var maxNubeY = 270;
-var minNubeY = 100;
-var nubes = [];
-var velNube = 0.5;
+let tiempoHastaNube = 0.5;
+let tiempoNubeMin = 0.7;
+let tiempoNubeMax = 2.7;
+let maxNubeY = 270;
+let minNubeY = 100;
+let nubes = [];
+let velNube = 0.5;
 
-var containerDino;
-var dino;
-var textoScore;
-var floorDino;
-var gameOver;
+let containerDino;
+let dino;
+let textoScore;
+let floorDino;
+let gameOver;
 
 function Start() {
     gameOver = document.querySelector(".game-over");
@@ -126,7 +126,7 @@ function DecidirCrearNubes() {
     }
 }
 function CrearObstaculo() {
-    var obstaculo = document.createElement("div");
+    let obstaculo = document.createElement("div");
     containerDino.appendChild(obstaculo);
     obstaculo.classList.add("cactus");
     if(Math.random() > 0.5) obstaculo.classList.add("cactus2");
@@ -137,7 +137,7 @@ function CrearObstaculo() {
     tiempoHastaObstaculo = tiempoObstaculoMin + Math.random() * (tiempoObstaculoMax-tiempoObstaculoMin) / gameVel;
 }
 function CrearNube() {
-    var nube = document.createElement("div");
+    let nube = document.createElement("div");
     containerDino.appendChild(nube);
     nube.classList.add("nube");
     nube.posX = containerDino.clientWidth;
@@ -148,7 +148,7 @@ function CrearNube() {
     tiempoHastaNube = tiempoNubeMin + Math.random() * (tiempoNubeMax-tiempoNubeMin) / gameVel;
 }
 function MoverObstaculos() {
-    for (var i = obstaculos.length - 1; i >= 0; i--) {
+    for (let i = obstaculos.length - 1; i >= 0; i--) {
         if(obstaculos[i].posX < -obstaculos[i].clientWidth) {
             obstaculos[i].parentNode.removeChild(obstaculos[i]);
             obstaculos.splice(i, 1);
@@ -161,7 +161,7 @@ function MoverObstaculos() {
 }
 
 function MoverNubes() {
-    for (var i = nubes.length - 1; i >= 0; i--) {
+    for (let i = nubes.length - 1; i >= 0; i--) {
         if(nubes[i].posX < -nubes[i].clientWidth) {
             nubes[i].parentNode.removeChild(nubes[i]);
             nubes.splice(i, 1);
@@ -194,7 +194,7 @@ function GameOver() {
 }
 
 function DetectarColision() {
-    for (var i = 0; i < obstaculos.length; i++) {
+    for (let i = 0; i < obstaculos.length; i++) {
         if(obstaculos[i].posX > dinoPosX + dino.clientWidth) {
             break; 
         }else{
@@ -206,8 +206,8 @@ function DetectarColision() {
 }
 
 function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft) {
-    var aRect = a.getBoundingClientRect();
-    var bRect = b.getBoundingClientRect();
+    let aRect = a.getBoundingClientRect();
+    let bRect = b.getBoundingClientRect();
 
     return !(
         ((aRect.top + aRect.height - paddingBottom) < (bRect.top)) ||
