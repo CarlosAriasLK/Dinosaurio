@@ -7,7 +7,7 @@ body{
     display: flex;
     align-items: center;
 }
-.contenedor {
+.containerDino {
     width: 920px;
     height: 280px;
     margin: 0 auto;
@@ -26,13 +26,13 @@ body{
     background-size: 336px 84px;
     background-position-x: 0px;
 }
-.dino-corriendo {
+.dino-running {
     animation: animarDino 0.25s steps(2) infinite;
 }
-.dino-estrellado {
+.dino-starry {
     background-position-x: -252px;
 }
-.suelo {
+.floorDino {
     width: 200%;
     height: 42px;
     position: absolute;

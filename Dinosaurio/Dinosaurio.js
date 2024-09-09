@@ -18,15 +18,15 @@ function Loop() {
     Update();
     requestAnimationFrame(Loop);
 }
-var sueloY = 22;
+var floorDinoY = 22;
 var velY = 0;
 var impulso = 900;
 var gravedad = 2500;
 
 var dinoPosX = 42;
-var dinoPosY = sueloY; 
+var dinoPosY = floorDinoY; 
 
-var sueloX = 0;
+var floorDinoX = 0;
 var velEscenario = 1280/3;
 var gameVel = 1;
 var score = 0;
@@ -48,16 +48,16 @@ var minNubeY = 100;
 var nubes = [];
 var velNube = 0.5;
 
-var contenedor;
+var containerDino;
 var dino;
 var textoScore;
-var suelo;
+var floorDino;
 var gameOver;
 
 function Start() {
     gameOver = document.querySelector(".game-over");
-    suelo = document.querySelector(".suelo");
-    contenedor = document.querySelector(".contenedor");
+    floorDino = document.querySelector(".floorDino");
+    containerDino = document.querySelector(".containerDino");
     textoScore = document.querySelector(".score");
     dino = document.querySelector(".dino");
     document.addEventListener("keydown", HandleKeyDown);
@@ -65,7 +65,7 @@ function Start() {
 function Update() {
     if(parado) return;
     MoverDinosaurio();
-    MoverSuelo();
+    MoverfloorDino();
     DecidirCrearObstaculos();
     DecidirCrearNubes();
     MoverObstaculos();
@@ -79,38 +79,38 @@ function HandleKeyDown(ev){
     }
 }
 function Saltar(){
-    if(dinoPosY === sueloY){
+    if(dinoPosY === floorDinoY){
         saltando = true;
         velY = impulso;
-        dino.classList.remove("dino-corriendo");
+        dino.classList.remove("dino-running");
     }
 }
 function MoverDinosaurio() {
     dinoPosY += velY * deltaTime;
-    if(dinoPosY < sueloY){
+    if(dinoPosY < floorDinoY){
         
-        TocarSuelo();
+        TocarfloorDino();
     }
     dino.style.bottom = dinoPosY+"px";
 }
-function TocarSuelo() {
-    dinoPosY = sueloY;
+function TocarfloorDino() {
+    dinoPosY = floorDinoY;
     velY = 0;
     if(saltando){
-        dino.classList.add("dino-corriendo");
+        dino.classList.add("dino-running");
     }
     saltando = false;
 }
-function MoverSuelo() {
-    sueloX += CalcularDesplazamiento();
-    suelo.style.left = -(sueloX % contenedor.clientWidth) + "px";
+function MoverfloorDino() {
+    floorDinoX += CalcularDesplazamiento();
+    floorDino.style.left = -(floorDinoX % containerDino.clientWidth) + "px";
 }
 function CalcularDesplazamiento() {
     return velEscenario * deltaTime * gameVel;
 }
 function Estrellarse() {
-    dino.classList.remove("dino-corriendo");
-    dino.classList.add("dino-estrellado");
+    dino.classList.remove("dino-running");
+    dino.classList.add("dino-starry");
     parado = true;
 }
 function DecidirCrearObstaculos() {
@@ -127,21 +127,21 @@ function DecidirCrearNubes() {
 }
 function CrearObstaculo() {
     var obstaculo = document.createElement("div");
-    contenedor.appendChild(obstaculo);
+    containerDino.appendChild(obstaculo);
     obstaculo.classList.add("cactus");
     if(Math.random() > 0.5) obstaculo.classList.add("cactus2");
-    obstaculo.posX = contenedor.clientWidth;
-    obstaculo.style.left = contenedor.clientWidth+"px";
+    obstaculo.posX = containerDino.clientWidth;
+    obstaculo.style.left = containerDino.clientWidth+"px";
 
     obstaculos.push(obstaculo);
     tiempoHastaObstaculo = tiempoObstaculoMin + Math.random() * (tiempoObstaculoMax-tiempoObstaculoMin) / gameVel;
 }
 function CrearNube() {
     var nube = document.createElement("div");
-    contenedor.appendChild(nube);
+    containerDino.appendChild(nube);
     nube.classList.add("nube");
-    nube.posX = contenedor.clientWidth;
-    nube.style.left = contenedor.clientWidth+"px";
+    nube.posX = containerDino.clientWidth;
+    nube.style.left = containerDino.clientWidth+"px";
     nube.style.bottom = minNubeY + Math.random() * (maxNubeY-minNubeY)+"px";
     
     nubes.push(nube);
@@ -177,15 +177,15 @@ function GanarPuntos() {
     textoScore.innerText = score;
     if(score == 5){
         gameVel = 1.5;
-        contenedor.classList.add("mediodia");
+        containerDino.classList.add("mediodia");
     }else if(score == 10) {
         gameVel = 2;
-        contenedor.classList.add("tarde");
+        containerDino.classList.add("tarde");
     } else if(score == 20) {
         gameVel = 3;
-        contenedor.classList.add("noche");
+        containerDino.classList.add("noche");
     }
-    suelo.style.animationDuration = (3/gameVel)+"s";
+    floorDino.style.animationDuration = (3/gameVel)+"s";
 }
 
 function GameOver() {
