@@ -18,6 +18,6 @@ function rotarImagenes() {
     var img = document.getElementById('imgSlide');
     // Obtiene el elemento de la imagen por su id 'imgSlide'
 
-    img.src = '../images/img' + ++contador + '.jpg';
+    img.src = 'images/img' + ++contador + '.jpg';
     // Cambia la imagen mostrada incrementando el número en el nombre del archivo
 }
