@@ -1,0 +1,30 @@
+#cajaSlide {
+    display: block;
+    /* Define que el contenedor de la imagen sea un bloque, es decir, ocupa toda la línea */
+
+    margin: 0;
+    /* Elimina cualquier margen alrededor del contenedor */
+
+    width: 100%;
+    /* Establece que el contenedor ocupe el 100% del ancho disponible */
+
+    text-align: center;
+    /* Centra el contenido dentro del contenedor horizontalmente */
+}
+
+#cajaSlide IMG {
+    max-width: 800px;
+    /* Establece el ancho máximo de la imagen en 800 píxeles */
+
+    border: 10px solid black;
+    /* Aplica un borde de 10 píxeles de grosor, sólido y de color negro alrededor de la imagen */
+
+    border-radius: 20px;
+    /* Redondea las esquinas de la imagen con un radio de 20 píxeles */
+
+    box-shadow: 10px 10px 10px black;
+    /* Aplica una sombra alrededor de la imagen, desplazada 10 píxeles en los ejes x e y, con un desenfoque de 10 píxeles y de color negro */
+
+    cursor: pointer;
+    /* Cambia el cursor a una mano cuando el usuario pasa el ratón sobre la imagen */
+}

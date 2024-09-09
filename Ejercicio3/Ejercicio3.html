@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Declara el tipo de documento como HTML5 -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Se asegura que la ventana se vea vien en todos los dispositivos -->
+</head>
+<body>
+    <!-- Inicia el cuerpo del documento donde se mostrará el contenido al usuario -->
+
+    <h1>Adivina el Número</h1>
+    <!-- Muestra un título principal en la página que dice "Adivina el Número" -->
+
+    <p>Intenta adivinar el numero entre 1 y 100.</p>
+    <!-- Muestra un párrafo con instrucciones sobre el juego -->
+
+    <input type="number" id="numero" placeholder="Escribe tu número">
+    <!-- Crea un campo de entrada para que el usuario ingrese un número. El tipo es 'number' para asegurarse de que solo se ingresen números. -->
+
+    <button onclick="adivinar()">Adivinar</button>
+    <!-- Crea un botón que, cuando se hace clic, llama a la función 'adivinar()' para evaluar el número ingresado. -->
+
+    <p id="resultado"></p>
+    <!-- Un párrafo vacío con un id 'resultado' donde se mostrará el resultado del juego después de que el usuario haga una adivinanza. -->
+
+    <script src="Ejercicio3.js"></script>
+</body>
+</html>

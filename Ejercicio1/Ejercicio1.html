@@ -1,0 +1,50 @@
+<head>
+    <meta name="author" content="Raúl Caro Pastorino" />
+    <!-- Esta línea define el autor de la página como "Raúl Caro Pastorino" -->
+
+    <script>
+        function viajarConSuerte() {
+            /* Define una función llamada viajarConSuerte */
+            
+            var x = Math.random() * 10;
+            /* Crea una variable 'x' y le asigna un número aleatorio entre 0 y 10 */
+
+            var URL;
+            /* Declara una variable 'URL' sin asignarle ningún valor inicialmente */
+
+            if (x <= 3) {
+                /* Si el valor de 'x' es menor o igual a 3 */
+                x = 0;
+                /* Asigna el valor 0 a 'x' */
+                URL = 'https://www.hotmail.com';
+                /* Asigna la URL de Hotmail a la variable 'URL' */
+            } else if (x <= 6) {
+                /* Si el valor de 'x' es mayor que 3 pero menor o igual a 6 */
+                x = 1;
+                /* Asigna el valor 1 a 'x' */
+                URL = 'https://www.gmail.com';
+                /* Asigna la URL de Gmail a la variable 'URL' */
+            } else {
+                /* Si el valor de 'x' es mayor que 6 */
+                x = 2;
+                /* Asigna el valor 2 a 'x' */
+                URL = 'https://www.yahoo.com';
+                /* Asigna la URL de Yahoo a la variable 'URL' */
+            }
+
+            location.assign(URL);
+            /* Redirige el navegador a la URL almacenada en la variable 'URL' */
+        }
+    </script>
+    <!-- Este bloque de código JavaScript define una función que redirige al usuario a una de tres páginas web aleatorias (Hotmail, Gmail o Yahoo) -->
+</head>
+
+<body>
+    <h1 id="titulo1">URL Aleatoria</h1>
+    <!-- Título de la página que muestra "URL Aleatoria" -->
+
+    <div>
+        <a href="javascript:viajarConSuerte();" title="Viajando con suerte">Pulsa aquí para probar suerte</a>
+        <!-- Un enlace que, al hacer clic, ejecuta la función 'viajarConSuerte' -->
+    </div>
+</body>
