@@ -12,49 +12,53 @@ function Init() {
     Loop();
 }
 function Loop() {
-    deltaTime = (new Date() - time) / 1000;
+    deltaTime = (new Date() - time) / 1000; /* Tiempo entre el ultimo cuadro y el actual */
     time = new Date();
     Update();
     requestAnimationFrame(Loop);
 }
 
 
+// Tiempos en el juego
 let seconds = 0;
 let minutes = 0;
 let timeInterval;
 let timeDisplay;
 
+// Dinosaurio y el escenario
 let floorDinoY = 22;
 let velY = 0;
 let impulso = 900;
 let gravedad = 2500;
 let dinoPosX = 42;
 let dinoPosY = floorDinoY; 
-
 let floorDinoX = 0;
 let velEscenario = 1280/3;
 let gameVel = 1;
 let score = 0;
 
+// Acciones del dinosaurio
 let parado = false;
 let saltando = false;
 let agachado = false;
 
-
+// Obstaculos
 let tiempoHastaObstaculo = 2;
 let tiempoObstaculoMin = 0.7;
 let tiempoObstaculoMax = 1.8;
 let obstaculoPosY = 16;
 let obstaculos = [];
 
+// Nubes
 let tiempoHastaNube = 0.5;
 let tiempoNubeMin = 0.7;
 let tiempoNubeMax = 2.7;
 let maxNubeY = 270;
 let minNubeY = 100;
-let nubes = [];
 let velNube = 0.5;
+let nubes = [];
 
+// Dinosaurio y la interfaz
 let containerDino;
 let dino;
 let textoScore;
@@ -77,7 +81,6 @@ function Start() {
 }
 
 
-
 function Update() {
     if(parado) return;
     MoverDinosaurio();
@@ -89,6 +92,7 @@ function Update() {
     DetectarColision();
     velY -= gravedad * deltaTime;
 }
+
 
 function HandleKeyUp(ev) {
     if(ev.keyCode == 40) { 
@@ -133,8 +137,6 @@ function Estrellarse() {
     dino.classList.add("dino-starry");
     parado = true;
 }
-
-
 
 
 
@@ -187,6 +189,9 @@ function CalcularDesplazamiento() {
     return velEscenario * deltaTime * gameVel;
 }
 
+
+
+
 function DecidirCrearObstaculos() {
     tiempoHastaObstaculo -= deltaTime;
     if(tiempoHastaObstaculo <= 0) {
@@ -199,6 +204,9 @@ function DecidirCrearNubes() {
         CrearNube();
     }
 }
+
+
+
 
 function CrearObstaculo() {
     let obstaculo = document.createElement("div");
@@ -272,10 +280,12 @@ function GanarPuntos() {
     floorDino.style.animationDuration = (3/gameVel)+"s";
 }
 
+
+
 function GameOver() {
     clearInterval(timeInterval);
     Estrellarse();
-    gameOver.style.display = "block";
+    gameOver.style.display = 'block';
     reiniciar.style.display = 'block';
 }
 
@@ -303,9 +313,6 @@ function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft)
     let bRect = b.getBoundingClientRect();
 
     return !(
-        ((aRect.top + aRect.height - paddingBottom) < (bRect.top)) ||
-        (aRect.top + paddingTop > (bRect.top + bRect.height)) ||
-        ((aRect.left + aRect.width - paddingRight) < bRect.left) ||
-        (aRect.left + paddingLeft > (bRect.left + bRect.width))
+        ((aRect.top + aRect.height - paddingBottom) < (bRect.top)) || (aRect.top + paddingTop > (bRect.top + bRect.height)) || ((aRect.left + aRect.width - paddingRight) < bRect.left) || (aRect.left + paddingLeft > (bRect.left + bRect.width))
     );
 }
